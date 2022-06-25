@@ -2,8 +2,6 @@
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
-
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -12,7 +10,7 @@ function writePassword() {
 
 }
 
-
+//variables for all the possible characters
 var upperChars = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W",
 "X","Y","Z"];
 
@@ -23,20 +21,14 @@ var speicalChars = ["!","@","#","$","%","&","*"];
 
 var numberChars = ["0","1","2","3","4","5","6","7","8","9"];
 
-
+//Main function
 function generatePassword() {
-
-  //variables for all the possible characters
-  
-  
-  
-  
-  //User inputs desired password length between 8 and 128
+  //User inputs desired password length between 8 and 128 also must be a number
   var userLengthAnswer =  window.prompt("How many characters would you like your password to be?");
 
-  while (userLengthAnswer < 8 || userLengthAnswer > 128 ) {
+  while (userLengthAnswer < 8 || userLengthAnswer > 128 || isNaN(userLengthAnswer) ) {
 
-    alert ("Your password must be between 8 and 128 characters.")
+    alert ("Your password must be a valid number between 8 and 128 characters.")
 
       var userLengthAnswer =  window.prompt("How many characters would you like your password to be?");
     }
@@ -51,38 +43,40 @@ function generatePassword() {
 
   var numberConfirm = confirm("Would you like to include numbers?");
 
-  var charSelector = "" //[]
+  var charSelector = []
+
+  var finalPassword = ""
 
 //If the user confirms, concat the variables
-
 if (upperConfirm) {
-  charSelector = charSelector.concat(upperConfirm)
+  charSelector = charSelector.concat(upperChars)
 }
 
 if (lowerConfirm) {
-  charSelector = charSelector.concat(lowerConfirm)
+  charSelector = charSelector.concat(lowerChars)
 }
 
 if (specialConfirm) {
-  charSelector = charSelector.concat(specialConfirm)
+  charSelector = charSelector.concat(speicalChars)
 }
 
 if (numberConfirm) {
-  charSelector = charSelector.concat(numberConfirm)
+  charSelector = charSelector.concat(numberChars)
 }
 
 //if no characters categories are selected, user is prompted to start over
 if (charSelector == 0){  
   alert ("You must confirm at least 1 category of characters.");
-  return "Press the 'Generate Password' button to start over."//possibly get rid of this  +=
-} else { password = Math.floor(Math.random() * userLengthAnswer);
-  return password
-
-}
-
-
-//return the completed password here!
-}
+  generatePassword();
+} else { 
+  //add the randomly selected character from the concatenated var to the finalPassword var 
+  for (var index = 0; index < userLengthAnswer; index++) {
+   
+    finalPassword += charSelector[Math.floor(Math.random() * charSelector.length)];
+  } 
+//Display the randomly generated password
+  return finalPassword
+}}
 
 
   
