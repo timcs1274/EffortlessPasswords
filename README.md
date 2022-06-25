@@ -7,7 +7,7 @@ This goal of this project is to help people come up with randomly generated secu
 This repository includes an [index.html](index.html), [script.js](script.js), [style.css](style.css), [MIT License](license), [gitignore](gitignore) and this [README.md](README.md). 
 
 Here's what it looks like:
-![Effortless Passwords](assets/images/passwordpic.png) 
+![Effortless Passwords](/images/passwordpic.png) 
 
 
 ## Usage 
